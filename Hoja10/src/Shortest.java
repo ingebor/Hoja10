@@ -77,8 +77,7 @@ public class Shortest {
 			}
 		}
 		
-		return "La matriz de caminos mas cortos entre los diferentes vertices es: \n"+chain+
-				"\nLos diferentes caminos mas cortos entre vertices son:\n"+shortWay;
+		return "\nLos diferentes caminos mas cortos entre vertices son:\n"+shortWay;
 	}
 	
 	public String caminosR(int i, int k,String[][] auxWays,String wayR) {
