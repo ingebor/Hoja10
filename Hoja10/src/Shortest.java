@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * 
  */
@@ -8,9 +10,10 @@
  */
 public class Shortest {
 	
-	public String floyd(long [][] pesos) {
+	public String floyd(long [][] pesos,ArrayList<String> ciudades) {
 		int cantVer = pesos.length;
 		long mtrzPesos[][] = pesos;
+		ArrayList<String> arrCiudades = ciudades;
 		String ways[][]= new String[cantVer][cantVer];
 		String auxWays[][] = new String[cantVer][cantVer];
 		String wayR = "";
@@ -67,10 +70,10 @@ public class Shortest {
 				if(mtrzPesos[i][j]!=1000000000) {
 					if(i!=j) {
 						if(ways[i][j].equals("")) {
-							shortWay = shortWay + "De (" + (i+1)+"--->" + (j+1)+") Ir por ("+(i+1)+", "+(j+1)+")\n";
+							shortWay = shortWay + "De " + (arrCiudades.get(i))+" a " + (arrCiudades.get(j))+" Ir por "+(arrCiudades.get(i))+", "+(arrCiudades.get(j))+"/\n";
 						}
 						else {
-							shortWay = shortWay + "De (" + (i+1)+"--->"+(j+1)+") Ir por ("+(i+1)+", "+ways[i][j]+", "+(j+1)+")\n";
+							shortWay = shortWay + "De " + (arrCiudades.get(i))+" a "+(arrCiudades.get(j))+" Ir por "+(arrCiudades.get(i))+", "+ways[i][j]+", "+(arrCiudades.get(j))+"/\n";
 						}
 					}
 				}
