@@ -1,18 +1,20 @@
 import java.util.ArrayList;
-
-/**
- * 
- */
-
 /**
  * @author Ingebor Rubio
- *
+ * @date 25/05/2020
+ * Hoja de trabajo 10 de Estructura de Datos
  */
 
 //Obtenido de https://www.youtube.com/watch?v=xK0ShW9G-Ts
 //Autor: MasterHeHeGar
 public class Shortest {
 	
+	/**
+	 * Algoritmo de Floyd
+	 * @param pesos
+	 * @param ciudades
+	 * @return String con todos los caminos mas cortos
+	 */
 	public String floyd(long [][] pesos,ArrayList<String> ciudades) {
 		int cantVer = pesos.length;
 		long mtrzPesos[][] = pesos;

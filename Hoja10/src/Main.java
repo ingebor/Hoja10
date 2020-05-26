@@ -1,3 +1,8 @@
+/**
+ * @author Ingebor Rubio
+ * @date 25/05/2020
+ * Hoja de trabajo 10 de Estructura de Datos
+ */
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -44,9 +49,11 @@ public class Main {
 				System.out.println("\nLas diferentes ciudades ingresadas son: ");
 				System.out.println(Arrays.toString(arrCiudades.toArray()));
 				
+				//Crear una matriz de adyacencia que represente el grafo
 				int filasColumnas = arrCiudades.size();
 				long[][] matriz = new long[filasColumnas][filasColumnas];
 				
+				//Lenar la matriz con las distancias ingresadas de ciudad a ciudad
 				int cantAristas = arrDistancia.size();
 				for (int i =0;i<cantAristas;i++) {
 					String origen = arrOrigen.get(i);
@@ -57,7 +64,7 @@ public class Main {
 					matriz[indxOrigen][indxDestino] = (long) distancia;
 				}
 				
-				//llenar matriz 
+				//llenar matriz en espacios de distancia infinita debido a que no hay un camino entre ellas
 				for(int i = 0;i<filasColumnas;i++) {
 					for(int j=0;j<filasColumnas;j++) {
 						if(matriz[i][j]==0 && i!=j) {
@@ -66,13 +73,10 @@ public class Main {
 					}
 				}
 				
-				
+				//Encontrar los caminos mas cortos
 				Shortest shortest = new Shortest();
 				String caminosCortos = shortest.floyd(matriz,arrCiudades);
 				String[] eachWay = caminosCortos.split("/");
-				/*for(int i= 0;i<eachWay.length;i++) {
-					System.out.println(eachWay[i]);
-				}*/
 				
 				boolean flag = true;
 				while(flag) {
@@ -83,7 +87,8 @@ public class Main {
 						if(option<1||option>5) {
 							throw new Exception();
 						}
-						else if (option == 1) {
+						//calcular una ruta mas corta
+						else if (option == 1) { //Si la opcion escogida es la primera, mostrar lo correspondiente
 							System.out.println("--En caso de que tome mas de una ciudad llegar al destino, se le mostrara el numero que le corresponde a la"
 									+ " ciudad intermedia, el cual puede encontrarse en el listado de ciudades mostrado inicialmente\n"
 									+ "--Si no hay un camino establecido entre el origen y el destino ingresados, se le consultara de nuevo los mismos\n");
@@ -98,8 +103,9 @@ public class Main {
 									boolean contieneDestino = arrCiudades.contains(aDestino);
 									if(contieneDestino) {
 										try {
-										for(int i= 0;i<eachWay.length;i++) {
-											String[] tempEachWay = eachWay[i].split(" ");
+											for(int i= 0;i<eachWay.length;i++) {
+												String[] tempEachWay = eachWay[i].split(" ");
+												//Si el origen y destino coinciden con los respectivos en el listado de caminos mas cortos, mostrar el correspondiente
 												if(tempEachWay[1].equals(deOrigen) && tempEachWay[3].equals(aDestino)) {
 													System.out.println(eachWay[i]);
 													contieneDestino = false;
@@ -123,12 +129,14 @@ public class Main {
 								}
 							}
 						}
-						else if (option == 2) {
-							System.out.println("El centro del grafo es: ");
+						//Mostrar el centro del grafo
+						else if (option == 2) {//Si la opcion escogida es la segunda, mostrar lo correspondiente
+							System.out.println("\nEl centro del grafo es: ");
 							System.out.println(matrix.findCenter(matriz, arrCiudades));
 							System.out.println("\n");
 						}
-						else if (option == 3) {
+						//Modificar una coneccion entre ciudades
+						else if (option == 3) {//Si la opcion ingresada es la tercera, mostrar lo correspondiente
 							boolean thrdFlag = true;
 							while(thrdFlag) {
 								System.out.println("Ingrese el motivo: \n1. Este camino se encuentra obstruido\n2. Deseo actualizar la distancia\n3. Regresar al menu");
@@ -137,6 +145,7 @@ public class Main {
 									if(scndOption<1||scndOption>3) {
 										throw new Exception();
 									}
+									//Si desea reportar que el camino esta interrumpido, cambiar por una distancia infinita 
 									else if(scndOption ==1) {
 										boolean frthFlag = true;
 										while(frthFlag) {
@@ -170,6 +179,7 @@ public class Main {
 											}
 										}
 									}
+									//Si desea actualizar, ingresar una nueva distancia
 									else if (scndOption == 2) {
 										boolean frthFlag = true;
 										while(frthFlag) {
@@ -230,6 +240,7 @@ public class Main {
 								}
 							}
 						}
+						//Mostrar matriz de adyacencia
 						else if(option == 4) {
 							System.out.println("\nLa matriz de adyacencia es la siguiente: ");
 							for(long mtrz[]:matriz) {
@@ -248,10 +259,12 @@ public class Main {
 						frstFlag = false;
 					}
 				}
-				
+				readInt.close();
+				readString.close();
 			}
 		}
 		 buffRea.close();
+		 
 	 }
 	
 }
