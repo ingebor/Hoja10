@@ -8,6 +8,9 @@ import java.util.ArrayList;
  * @author Ingebor Rubio
  *
  */
+
+//Obtenido de https://www.youtube.com/watch?v=xK0ShW9G-Ts
+//Autor: MasterHeHeGar
 public class Shortest {
 	
 	public String floyd(long [][] pesos,ArrayList<String> ciudades) {
@@ -80,7 +83,7 @@ public class Shortest {
 			}
 		}
 		
-		return "\nLos diferentes caminos mas cortos entre vertices son:\n"+shortWay;
+		return shortWay;
 	}
 	
 	public String caminosR(int i, int k,String[][] auxWays,String wayR) {

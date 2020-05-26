@@ -80,10 +80,13 @@ public class Main {
 							+ "\n3. Modificar una conexion entre ciudades\n4. Mostrar matriz de adyacencia\n5. Salir");
 					try {
 						int option = readInt.nextInt();
-						if(option<1||option>4) {
+						if(option<1||option>5) {
 							throw new Exception();
 						}
 						else if (option == 1) {
+							System.out.println("--En caso de que tome mas de una ciudad llegar al destino, se le mostrara el numero que le corresponde a la"
+									+ " ciudad intermedia, el cual puede encontrarse en el listado de ciudades mostrado inicialmente\n"
+									+ "--Si no hay un camino establecido entre el origen y el destino ingresados, se le consultara de nuevo los mismos\n");
 							boolean flag1Camino = true;
 							while(flag1Camino) {
 								System.out.println("Ingrese el nombre de la ciudad de **origen** exactamente como lo hizo en el archivo de texto: ");
@@ -94,23 +97,36 @@ public class Main {
 									String aDestino = readString.nextLine();
 									boolean contieneDestino = arrCiudades.contains(aDestino);
 									if(contieneDestino) {
+										try {
 										for(int i= 0;i<eachWay.length;i++) {
-											//System.out.println(eachWay[i]);
-											
+											String[] tempEachWay = eachWay[i].split(" ");
+												if(tempEachWay[1].equals(deOrigen) && tempEachWay[3].equals(aDestino)) {
+													System.out.println(eachWay[i]);
+													contieneDestino = false;
+													loContiene = false;
+													flag1Camino = false;
+												}
+												else {
+												}
+											}
+										}
+										catch(Exception e) {
+											System.out.println(" ");
 										}
 									}
 									else {
-										System.out.println("Por favor ingrese una ciudad que se encuentre en los datos ingresados originalmente");
+										System.out.println("\nPor favor ingrese una ciudad que se encuentre en los datos ingresados originalmente");
 									}
 								}
 								else {
-									System.out.println("Por favor ingrese una ciudad que se encuentre en los datos ingresados originalmente");
+									System.out.println("\nPor favor ingrese una ciudad que se encuentre en los datos ingresados originalmente");
 								}
 							}
-							System.out.println(caminosCortos);
 						}
 						else if (option == 2) {
 							System.out.println("El centro del grafo es: ");
+							System.out.println(matrix.findCenter(matriz, arrCiudades));
+							System.out.println("\n");
 						}
 						else if (option == 3) {
 							boolean thrdFlag = true;

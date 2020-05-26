@@ -1,5 +1,9 @@
-Mixco Antigua 30
-Antigua Escuintla 25
-Escuintla SantaLucia 15
+Mixco Antigua 10
+Antigua Escuintla 5
+Escuintla SantaLucia 4
 Antigua Carretera 5
 Carretera SantaLucia 6
+Antigua Mixco 10
+Escuintla Mixco 20
+SantaLucia Mixco 14
+Carretera Mixco 20
